@@ -1,3 +1,5 @@
+import Rating from "./Rating";
+
 import { Card } from "react-bootstrap";
 
 const Product = ({ product }) => {
@@ -18,11 +20,14 @@ const Product = ({ product }) => {
 
                     <Card.Text as="div">
                         <div className="my-3">
-                            {product.rating} from {product.numReviews} reviews
+                            <Rating
+                                value={product.rating} text={`${product.numReviews} reviews`}
+                                // color='gold' is one way of doing it. Another one is directly in the Rating component
+                            />
                         </div>
                     </Card.Text>
 
-                    <Card.Text as="h3">£{product.price}</Card.Text>
+                    <Card.Text as="h3">${product.price}</Card.Text>
 
                 </Card.Body>
             </Card>
