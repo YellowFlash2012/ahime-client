@@ -1,14 +1,24 @@
-import React from 'react';
+import React from "react";
+import { Container } from "react-bootstrap";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
-import { Counter } from './features/counter/Counter';
-
+import { Counter } from "./features/counter/Counter";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Welcome to Ahime</h1>
-    </div>
-  );
+    return (
+        <div>
+            <Header />
+
+            <main className="py-3">
+                <Container>
+                    <h1>Welcome to Ahime</h1>
+                </Container>
+            </main>
+
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
