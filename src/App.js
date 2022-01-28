@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 import { Counter } from "./features/counter/Counter";
+import Home from "./pages/Home";
 
 function App() {
     return (
@@ -12,7 +13,7 @@ function App() {
 
             <main className="py-3">
                 <Container>
-                    <h1>Welcome to Ahime</h1>
+                    <Home />
                 </Container>
             </main>
 
