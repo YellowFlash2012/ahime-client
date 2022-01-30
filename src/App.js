@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import { Counter } from "./features/counter/Counter";
 import Home from "./pages/Home";
 import SingleProduct from "./pages/SingleProduct";
+import Cart from "./pages/Cart";
 
 function App() {
     return (
@@ -23,6 +24,18 @@ function App() {
                             <Route
                                 path="/product/:id"
                                 element={<SingleProduct />}
+                            />
+
+                            {/* 2 routes are needed to fully render the cart */}
+                            <Route
+                                // path="/cart/:id?" is no longer supported under RRDV6
+                                path="/cart/:id"
+                                element={<Cart />}
+                            />
+                            <Route
+                                // path="/cart/:id?" is no longer supported under RRDV6
+                                path="/cart"
+                                element={<Cart />}
                             />
                         </Routes>
                     </Container>
