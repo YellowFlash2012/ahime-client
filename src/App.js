@@ -9,6 +9,7 @@ import { Counter } from "./features/counter/Counter";
 import Home from "./pages/Home";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
+import Login from "./pages/Login";
 
 function App() {
     return (
@@ -37,6 +38,8 @@ function App() {
                                 path="/cart"
                                 element={<Cart />}
                             />
+
+                            <Route path="/login" element={<Login />} />
                         </Routes>
                     </Container>
                 </main>
