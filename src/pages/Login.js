@@ -70,7 +70,7 @@ const Login = () => {
                     </FormControl>
                 </Form.Group>
 
-                <Button type='submit' mt={2} variant='primary'>
+                <Button type='submit' className='mt-2' variant='primary'>
                     Login
                 </Button>
             </Form>
