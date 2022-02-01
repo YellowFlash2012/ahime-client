@@ -8,17 +8,15 @@ import {
     Row,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 
-import FormContainer from "../components/FormContainer";
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 
 const Profile = () => {
-    const location = useLocation();
+    
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -33,6 +31,9 @@ const Profile = () => {
     
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+    
+    const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+    const { success } = userUpdateProfile;
 
     useEffect(() => {
         if (!userInfo) {
@@ -55,7 +56,7 @@ const Profile = () => {
             setMsg("Passwords do not match");
         } else {
             setMsg(null);
-            dispatch(userDetails(name, email, password));
+            dispatch(updateUserProfile({ id: user._id, name, email, password }));
         }
     };
 
@@ -70,6 +71,9 @@ const Profile = () => {
 
                     {/* other messages related to the signup form */}
                     {error && <Message variant="danger">{error}</Message>}
+
+                    {/* user profile successfully updated */}
+                    {success && <Message variant="success">Profile updated 😄</Message>}
 
                     {loading && <Loader />}
 
