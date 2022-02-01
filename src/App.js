@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
     return (
@@ -40,6 +41,8 @@ function App() {
                             />
 
                             <Route path="/login" element={<Login />} />
+
+                            <Route path="/register" element={<Register />} />
                         </Routes>
                     </Container>
                 </main>
