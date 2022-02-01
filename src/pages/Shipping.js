@@ -8,19 +8,19 @@ import CheckoutSteps from "../components/CheckoutSteps";
 
 const Shipping = () => {
 
-  const cart = useSelector(state => state.cart);
-  const { shippingAddress } = cart;
+    const cart = useSelector(state => state.cart);
+    const { shippingAddress } = cart;
 
     const navigate = useNavigate();
 
     const [address, setAddress] = useState(shippingAddress.address);
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
-  const [country, setCountry] = useState(shippingAddress.country);
+    const [country, setCountry] = useState(shippingAddress.country);
   
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const shippingHandler = (e) => {
+    const shippingHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
     navigate('/payment')
