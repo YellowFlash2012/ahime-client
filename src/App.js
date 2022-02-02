@@ -14,6 +14,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Shipping from "./pages/Shipping";
 import Payment from "./pages/Payment";
+import PlaceOrders from "./pages/PlaceOrders";
 
 function App() {
     return (
@@ -53,6 +54,7 @@ function App() {
                             
                             <Route path="/payment" element={<Payment />} />
                             
+                            <Route path="/placeorder" element={<PlaceOrders />} />
                         </Routes>
                     </Container>
                 </main>
