@@ -1,23 +1,57 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Col, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { createOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps'
 import Message from '../components/Message';
 
 const PlaceOrders = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const cart = useSelector(state => state.cart);
 
     // calculate prices & amounts
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
+    console.log(cart.itemsPrice);
 
     cart.shippingPrice = cart.itemsPrice > 100 ? 0 : 100;
+    console.log(cart.shippingPrice);
 
     cart.taxAmount = +((0.15 * cart.itemsPrice).toFixed(2));
+    console.log(cart.taxAmount);
 
     cart.totalAmount = +(cart.itemsPrice + cart.shippingPrice + cart.taxAmount);
+    console.log(cart.totalAmount);
 
-    const placeOrderHandler=()=>{}
+    cart.paymentMethod = "PayPal";
+
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { order, success, error } = orderCreate;
+
+    useEffect(() => {
+        if (success) {
+            navigate(`/order/${order._id}`);
+        }
+
+        // eslint-disable-next-line
+    }, [navigate, success])
+
+    const placeOrderHandler = () => {
+        
+
+        dispatch(createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxAmount: cart.taxAmount,
+            totalAmount: cart.totalAmount
+        }))
+    }
 
     return (
         <div>
@@ -41,7 +75,7 @@ const PlaceOrders = () => {
                         <ListGroupItem>
                             <h2>Payment Method</h2>
                             <strong>Method: </strong>
-                            {cart.paymentMthod}
+                            {cart.paymentMethod}
                         </ListGroupItem>
 
                         <ListGroupItem>
@@ -110,6 +144,12 @@ const PlaceOrders = () => {
 
                                     <Col>${cart.totalAmount}</Col>
                                 </Row>
+                            </ListGroupItem>
+
+                            <ListGroupItem>
+                                {error && <Message variant='danger'>
+                                    {error}
+                                </Message> }
                             </ListGroupItem>
 
                             <ListGroupItem>
