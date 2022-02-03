@@ -121,6 +121,16 @@ const Cart = () => {
                                 Proceed to checkout
                             </Button>
                         </ListGroupItem>
+
+                        <ListGroupItem>
+                            <Button
+                                type="button"
+                                className="btn-block"
+                                onClick={()=>navigate("/")}
+                            >
+                                Keep Shopping
+                            </Button>
+                        </ListGroupItem>
                     </ListGroup>
                 </Card>
             </Col>
