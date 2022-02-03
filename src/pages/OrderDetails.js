@@ -26,8 +26,11 @@ const OrderDetails = () => {
     const { order, loading, error } = orderDetails;
 
     useEffect(() => {
-        dispatch(getOrderDetails(id));
-    }, [dispatch, id]);
+        if (!order || order._id !== id) {
+            dispatch(getOrderDetails(id));
+        }
+        
+    }, [dispatch, order, id]);
 
 
     return (

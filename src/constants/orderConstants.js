@@ -11,3 +11,13 @@ export const ORDER_DETAILS_REQUEST = "ORDER_DETAILS_REQUEST";
 export const ORDER_DETAILS_SUCCESS = "ORDER_DETAILS_SUCCESS";
 
 export const ORDER_DETAILS_FAIL = "ORDER_DETAILS_FAIL";
+
+// *****update order to paid*****
+export const ORDER_PAY_REQUEST = "ORDER_PAY_REQUEST";
+
+export const ORDER_PAY_SUCCESS = "ORDER_PAY_SUCCESS";
+
+export const ORDER_PAY_FAIL = "ORDER_PAY_FAIL";
+
+export const ORDER_PAY_RESET = "ORDER_PAY_RESET";
+
