@@ -21,3 +21,9 @@ export const ORDER_PAY_FAIL = "ORDER_PAY_FAIL";
 
 export const ORDER_PAY_RESET = "ORDER_PAY_RESET";
 
+// *****orders related to logged in user*****
+export const ORDER_LIST_MY_REQUEST = "ORDER_LIST_MY_REQUEST";
+
+export const ORDER_LIST_MY_SUCCESS = "ORDER_LIST_MY_SUCCESS";
+
+export const ORDER_LIST_MY_FAIL = "ORDER_LIST_MY_FAIL";
