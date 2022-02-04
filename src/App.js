@@ -16,6 +16,7 @@ import Shipping from "./pages/Shipping";
 import Payment from "./pages/Payment";
 import PlaceOrders from "./pages/PlaceOrders";
 import OrderDetails from "./pages/OrderDetails";
+import UsersList from "./pages/UsersList";
 
 function App() {
     return (
@@ -58,6 +59,8 @@ function App() {
                             <Route path="/placeorder" element={<PlaceOrders />} />
 
                             <Route path="/order/:id" element={<OrderDetails />} />
+
+                            <Route path='/admin/users' element={<UsersList />} />
                         </Routes>
                     </Container>
                 </main>
