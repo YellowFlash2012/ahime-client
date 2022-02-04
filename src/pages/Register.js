@@ -58,8 +58,8 @@ const Register = () => {
                 <h1>Sign Up</h1>
 
                 {/* passwords don't match message */}
-                {msg && <Message variant='danger'>{msg}</Message>}
-                
+                {msg && <Message variant="danger">{msg}</Message>}
+
                 {/* other messages related to the signup form */}
                 {error && <Message variant="danger">{error}</Message>}
 
@@ -77,7 +77,7 @@ const Register = () => {
                     </Form.Group>
 
                     <Form.Group controlId="email">
-                        <FormLabel>Email address</FormLabel>
+                        <FormLabel className="mt-2">Email address</FormLabel>
 
                         <FormControl
                             type="email"
@@ -88,7 +88,7 @@ const Register = () => {
                     </Form.Group>
 
                     <Form.Group controlId="password">
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel className="mt-2">Password</FormLabel>
 
                         <FormControl
                             type="password"
@@ -97,9 +97,9 @@ const Register = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         ></FormControl>
                     </Form.Group>
-                    
+
                     <Form.Group controlId="confPassword">
-                        <FormLabel>Confirm Password</FormLabel>
+                        <FormLabel className="mt-2">Confirm Password</FormLabel>
 
                         <FormControl
                             type="password"
@@ -116,7 +116,8 @@ const Register = () => {
 
                 <Row className="py-3">
                     <Col>
-                        Already have an account? <Link to="/login">Login</Link> instead!
+                        Already have an account? <Link to="/login">Login</Link>{" "}
+                        instead!
                     </Col>
                 </Row>
             </FormContainer>

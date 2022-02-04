@@ -36,51 +36,50 @@ const Login = () => {
         dispatch(login(email, password));
     }
 
-    return <div>
-        <FormContainer>
-            <h1>Sign In</h1>
-            {error && <Message variant='danger'>{error}</Message>}
-            
-            {loading && <Loader />}
-            <Form onSubmit={loginSubmitHandler}>
-                <Form.Group controlId='email'>
-                    <FormLabel>Email address</FormLabel>
+    return (
+        <div>
+            <FormContainer>
+                <h1>Sign In</h1>
+                {error && <Message variant="danger">{error}</Message>}
 
-                    <FormControl
-                        type='email'
-                        placeholder='Enter email address'
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
-                    >
+                {loading && <Loader />}
+                <Form onSubmit={loginSubmitHandler}>
+                    <Form.Group controlId="email">
+                        <FormLabel>Email address</FormLabel>
 
-                    </FormControl>
-                </Form.Group>
-                
-                
-                <Form.Group controlId='password'>
-                    <FormLabel>Password</FormLabel>
+                        <FormControl
+                            type="email"
+                            placeholder="Enter email address"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        ></FormControl>
+                    </Form.Group>
 
-                    <FormControl
-                        type='password'
-                        placeholder='Enter password'
-                        value={password}
-                        onChange={(e)=>setPassword(e.target.value)}
-                    >
+                    <Form.Group controlId="password">
+                        <FormLabel className="mt-2">Password</FormLabel>
 
-                    </FormControl>
-                </Form.Group>
+                        <FormControl
+                            type="password"
+                            placeholder="Enter password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        ></FormControl>
+                    </Form.Group>
 
-                <Button type='submit' className='mt-2' variant='primary'>
-                    Login
-                </Button>
-            </Form>
+                    <Button type="submit" className="mt-2" variant="primary">
+                        Login
+                    </Button>
+                </Form>
 
-            <Row className='py-3'>
-                <Col>
-                New Customer? <Link to="/register">Register</Link> instead!</Col>
-            </Row>
-      </FormContainer>
-  </div>;
+                <Row className="py-3">
+                    <Col>
+                        New Customer? <Link to="/register">Register</Link>{" "}
+                        instead!
+                    </Col>
+                </Row>
+            </FormContainer>
+        </div>
+    );
 };
 
 export default Login;
