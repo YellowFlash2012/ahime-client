@@ -19,6 +19,7 @@ import OrderDetails from "./pages/OrderDetails";
 import UsersList from "./pages/UsersList";
 import UserEditByAdmin from "./pages/UserEditByAdmin";
 import ProductListByAdmin from "./pages/ProductListByAdmin";
+import ProductEditByAdmin from "./pages/ProductEditByAdmin";
 
 function App() {
     return (
@@ -55,19 +56,38 @@ function App() {
                             <Route path="/profile" element={<Profile />} />
 
                             <Route path="/shipping" element={<Shipping />} />
-                            
+
                             <Route path="/payment" element={<Payment />} />
-                            
-                            <Route path="/placeorder" element={<PlaceOrders />} />
 
-                            <Route path="/order/:id" element={<OrderDetails />} />
+                            <Route
+                                path="/placeorder"
+                                element={<PlaceOrders />}
+                            />
 
-                            <Route path='/admin/users' element={<UsersList />} />
+                            <Route
+                                path="/order/:id"
+                                element={<OrderDetails />}
+                            />
 
-                            <Route path="/admin/user/:id/edit" element={<UserEditByAdmin />} />
+                            <Route
+                                path="/admin/users"
+                                element={<UsersList />}
+                            />
 
-                            <Route path="/admin/products" element={<ProductListByAdmin />} />
-                            
+                            <Route
+                                path="/admin/user/:id/edit"
+                                element={<UserEditByAdmin />}
+                            />
+
+                            <Route
+                                path="/admin/products"
+                                element={<ProductListByAdmin />}
+                            />
+
+                            <Route
+                                path="/admin/product/:id/edit"
+                                element={<ProductEditByAdmin />}
+                            />
                         </Routes>
                     </Container>
                 </main>
