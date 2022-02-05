@@ -24,7 +24,7 @@ const UserEditByAdmin = () => {
 
     const id = useParams();
     
-    const location = useLocation();
+    
     const navigate = useNavigate();
 
     const [name, setName] = useState("");

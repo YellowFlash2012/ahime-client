@@ -1,27 +1,25 @@
 import React,{useEffect,useState} from 'react';
 import {
     Button,
-    Col,
     Form,
     FormControl,
-    FormGroup,
     FormLabel,
-    Row,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Link, useParams } from "react-router-dom";
 
 import FormContainer from "../components/FormContainer";
-import { listProduct } from "../actions/productActions";
+import { listProduct, updateProduct } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from '../components/Loader'
+import { PRODUCT_DETAILS_RESET, PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditByAdmin = () => {
     const productId = useParams();
 
-    const location = useLocation();
+    
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -37,11 +35,20 @@ const ProductEditByAdmin = () => {
 
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, error, product } = productDetails;
+    
+    const productUpdate = useSelector((state) => state.productUpdate);
+    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = productUpdate;
 
 
     useEffect(() => {
-        
-            if (!product.name || product._id !==productId) {
+
+        if (successUpdate) {
+            dispatch({ type: PRODUCT_UPDATE_RESET });
+            dispatch({type:PRODUCT_DETAILS_RESET})
+
+            navigate('/admin/products');
+        } else {
+            if (!product.name || product._id !== productId) {
                 dispatch(listProduct(productId));
             } else {
                 setName(product.name);
@@ -52,11 +59,17 @@ const ProductEditByAdmin = () => {
                 setCategory(product.category);
                 setcountInStock(product.setcountInStock);
             }
-        }, [dispatch, productId, navigate]);
+        }
+        
+            
+        }, [dispatch, productId, navigate, product, successUpdate]);
 
     const updateSubmitHandler = (e) => {
         e.preventDefault();
         
+        dispatch(updateProduct({
+            _id: productId, name, price, description, brand, category, image, countInStock
+        }));
     };
 
     return (
@@ -68,10 +81,10 @@ const ProductEditByAdmin = () => {
             <FormContainer>
                 <h1>Edit product</h1>
 
-                {/* {loadingUpdate && <Loader />}
+                {loadingUpdate && <Loader />}
                 {errorUpdate && (
                     <Message variant="danger">{errorUpdate}</Message>
-                )} */}
+                )}
 
                 {loading ? (
                     <Loader />
