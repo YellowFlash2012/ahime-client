@@ -10,14 +10,14 @@ import {
     Row,
 } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
-import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { deliverOrder, getOrderDetails, payOrder } from "../actions/orderActions";
 import Loader from "../components/Loader.js";
 
 import Message from "../components/Message";
 import { PayPalButton } from "react-paypal-button-v2";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderDetails = () => {
     const dispatch = useDispatch();
@@ -34,7 +34,19 @@ const OrderDetails = () => {
     const orderPay = useSelector((state) => state.orderPay);
     const { loading: loadingPay, success: successPay } = orderPay;
 
+    // related to delivery
+    const orderDeliver = useSelector((state) => state.orderDeliver);
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+
+    // related to user logged in
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
     useEffect(() => {
+
+        if (!userInfo) {
+            navigate('/login')
+        }
         const addPaypalScript = async () => {
             const { data: clientId } = await axios.get("/api/config/paypal");
 
@@ -52,8 +64,10 @@ const OrderDetails = () => {
             document.body.appendChild(script);
         };
 
-        if (!order || successPay) {
-            dispatch({type:ORDER_PAY_RESET})
+        if (!order || successPay || successDeliver) {
+            dispatch({ type: ORDER_PAY_RESET });
+            dispatch({ type: ORDER_DELIVER_RESET });
+
             dispatch(getOrderDetails(id));
         } else if (!order.isPaid) {
             if (!window.paypal) {
@@ -62,12 +76,16 @@ const OrderDetails = () => {
                 setSdkReady(true);
             }
         }
-    }, [dispatch, order, id, successPay]);
+    }, [dispatch, order, id, successPay, successDeliver]);
 
     const successPaymentHandler = (paymentResult) => {
         console.log(paymentResult);
         dispatch(payOrder(id, paymentResult))
     };
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order));
+    }
 
     return (
         <div>
@@ -238,14 +256,25 @@ const OrderDetails = () => {
                                         </ListGroupItem>
                                     )}
 
-                                    <ListGroupItem>
+                                    {/* <ListGroupItem>
                                         <Button
                                             type="button"
                                             className="btn-block"
                                         >
                                             Place Order
                                         </Button>
-                                    </ListGroupItem>
+                                    </ListGroupItem> */}
+                                            
+                                            {loadingDeliver && <Loader />}
+                                            {userInfo &&
+                                                userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                                    <ListGroupItem>
+                                                        <Button type="button" className="btn btn-block" onClick={deliverHandler}>
+                                                            Mark as Delivered
+                                                        </Button>
+                                                    </ListGroupItem>
+                                                )
+                                            }
                                 </ListGroup>
                             </Card>
                         </Col>
