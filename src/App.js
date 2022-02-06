@@ -20,6 +20,7 @@ import UsersList from "./pages/UsersList";
 import UserEditByAdmin from "./pages/UserEditByAdmin";
 import ProductListByAdmin from "./pages/ProductListByAdmin";
 import ProductEditByAdmin from "./pages/ProductEditByAdmin";
+import OrdersList from "./pages/OrdersList";
 
 function App() {
     return (
@@ -88,6 +89,9 @@ function App() {
                                 path="/admin/product/:id/edit"
                                 element={<ProductEditByAdmin />}
                             />
+
+                            <Route path="/admin/orders" element={<OrdersList />} />
+                            
                         </Routes>
                     </Container>
                 </main>
