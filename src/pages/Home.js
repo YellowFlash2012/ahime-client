@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useParams } from "react-router-dom";
 import Paginate from "../components/Paginate";
+import ProductsCaroussel from "../components/ProductsCaroussel";
 
 
 const Home = () => {
@@ -31,6 +32,8 @@ const Home = () => {
 
     return (
         <div>
+
+            {!keyword && <ProductsCaroussel /> }
             <h1>Latest products</h1>
             {loading ? (
                 <Loader />

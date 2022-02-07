@@ -13,3 +13,4 @@ https://bootswatch.com/
 4- learned that for a component like cart, it needs to be rendered under 2 options: either from the single-product page or directly by clicking on "cart" in the navbar. Therefore, under RRDV6, 2 routes are needed in the app.js file to fully render the cart.
 5- learned how to log users in immediately after signup by dispatching the login_success action immeditaely after the register_success action.
 6- Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Orders"
+7- The pagination section was tough to digest. But seeing the big picture at the end of it started to make sense.
