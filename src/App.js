@@ -21,12 +21,14 @@ import UserEditByAdmin from "./pages/UserEditByAdmin";
 import ProductListByAdmin from "./pages/ProductListByAdmin";
 import ProductEditByAdmin from "./pages/ProductEditByAdmin";
 import OrdersList from "./pages/OrdersList";
+import SearchBox from "./components/SearchBox";
 
 function App() {
     return (
         <div>
             <BrowserRouter>
                 <Header />
+    
 
                 <main className="py-3">
                     <Container>
@@ -92,6 +94,7 @@ function App() {
 
                             <Route path="/admin/orders" element={<OrdersList />} />
                             
+                            <Route path='/search/:keyword' element={<Home/>}/>
                         </Routes>
                     </Container>
                 </main>

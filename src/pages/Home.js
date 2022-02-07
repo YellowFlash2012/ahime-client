@@ -7,9 +7,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { useParams } from "react-router-dom";
 
 
 const Home = () => {
+
+    const keyword = useParams().keyword;
 
     const dispatch = useDispatch();
 
@@ -17,8 +20,8 @@ const Home = () => {
     const { loading, error, products } = productList;
 
     useEffect(() => {
-        dispatch(listProducts());
-    }, [dispatch])
+        dispatch(listProducts(keyword));
+    }, [dispatch, keyword])
 
 
     return (
