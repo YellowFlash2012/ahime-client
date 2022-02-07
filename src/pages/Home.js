@@ -10,6 +10,8 @@ import Message from "../components/Message";
 import { useParams } from "react-router-dom";
 import Paginate from "../components/Paginate";
 import ProductsCaroussel from "../components/ProductsCaroussel";
+import { Link } from "react-router-dom";
+import Meta from "../components/Meta";
 
 
 const Home = () => {
@@ -32,8 +34,9 @@ const Home = () => {
 
     return (
         <div>
+            <Meta />
 
-            {!keyword && <ProductsCaroussel /> }
+            {!keyword ? <ProductsCaroussel /> : <Link to='/' className="btn btn-light">Go Back</Link> }
             <h1>Latest products</h1>
             {loading ? (
                 <Loader />

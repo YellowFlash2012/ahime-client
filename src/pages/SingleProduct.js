@@ -18,6 +18,7 @@ import { createProductReview, listProduct } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import Meta from "../components/Meta";
 
 const SingleProduct = () => {
     const navigate = useNavigate();
@@ -74,7 +75,8 @@ const SingleProduct = () => {
             ) : error ? (
                 <Message variant="danger">{error}</Message>
             ) : (
-                <>
+                        <>
+                            <Meta title={product.name} />
                     <Row>
                         <Col md={6}>
                             <Image
