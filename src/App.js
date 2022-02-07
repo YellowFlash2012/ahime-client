@@ -86,6 +86,11 @@ function App() {
                                 path="/admin/products"
                                 element={<ProductListByAdmin />}
                             />
+                            {/* pagination route for admin */}
+                            <Route
+                                path="/admin/products/:pageNumber"
+                                element={<ProductListByAdmin />}
+                            />
 
                             <Route
                                 path="/admin/product/:id/edit"
@@ -95,6 +100,12 @@ function App() {
                             <Route path="/admin/orders" element={<OrdersList />} />
                             
                             <Route path='/search/:keyword' element={<Home/>}/>
+
+                            {/* pagination routes */}
+                            <Route path="/page/:pageNumber" element={<Home />} />
+
+                            <Route path="/search/:keyword/page/:pageNumber" element={<Home />} />
+                            
                         </Routes>
                     </Container>
                 </main>
