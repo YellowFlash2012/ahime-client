@@ -11,13 +11,14 @@ import {
 
 import {LinkContainer} from 'react-router-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { listMyOrders } from "../actions/orderActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const Profile = () => {
     
@@ -48,7 +49,8 @@ const Profile = () => {
         if (!userInfo) {
             navigate("/login");
         } else {
-            if (!user.name) {
+            if (!user.name || success) {
+                dispatch({type:USER_UPDATE_PROFILE_RESET})
                 dispatch(getUserDetails("profile"));
 
                 dispatch(listMyOrders());
@@ -58,7 +60,7 @@ const Profile = () => {
                 setEmail(user.email);
             }
         }
-    }, [navigate, userInfo, dispatch, user.name, user.email]);
+    }, [navigate, userInfo, dispatch, user.name, user.email, success]);
 
     const profileSubmitHandler = (e) => {
         e.preventDefault();
