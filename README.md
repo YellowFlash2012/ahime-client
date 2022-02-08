@@ -2,6 +2,8 @@
 ![ahime-client](/public/images/ahime-prod.png)
 Client side of a full stack ecommerce project
 
+<a href="https://ahimeecom.herokuapp.com/">Live preview</a>
+
 Course: Ecommerce MERN project
 Course author: Brad Traversy
 Platform: Udemy
